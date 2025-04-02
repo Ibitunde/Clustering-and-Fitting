@@ -9,7 +9,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import silhouette_score
 from sklearn.linear_model import LinearRegression
 from scipy.spatial.distance import cdist
-#import kneed  # Remove this import
+
 
 def plot_relational_plot(df):
     """
@@ -28,6 +28,7 @@ def plot_relational_plot(df):
     plt.show()
     return
 
+
 def plot_categorical_plot(df):
     """
     Plot the categorical distribution of car prices.
@@ -43,6 +44,7 @@ def plot_categorical_plot(df):
     plt.savefig('statistical_plot.png')
     plt.show()
     return
+
 
 def plot_statistical_plot(df):
     """
@@ -62,6 +64,7 @@ def plot_statistical_plot(df):
     plt.savefig('categorical_plot.png')
     plt.show()
     return
+
 
 def plot_correlation_heatmap(df):
     """
@@ -83,6 +86,7 @@ def plot_correlation_heatmap(df):
     plt.show()
     return
 
+
 def statistical_analysis(df, col: str):
     """
     Compute statistical moments: mean, standard deviation, skewness,
@@ -93,6 +97,7 @@ def statistical_analysis(df, col: str):
     skew = ss.skew(df[col])
     excess_kurtosis = ss.kurtosis(df[col])
     return mean, stddev, skew, excess_kurtosis
+
 
 def preprocessing(df):
     """
@@ -113,6 +118,7 @@ def preprocessing(df):
     # Drop missing values as in the second code
     df = df.dropna()
     return df
+
 
 def writing(moments, col):
     """
@@ -140,6 +146,7 @@ def writing(moments, col):
     
     print(f'The data was {skew_type} skewed and {kurtosis_type}.')
     return
+
 
 def find_optimal_k(scaled_data, k_range=range(2, 10)):
     """
@@ -179,7 +186,6 @@ def find_optimal_k(scaled_data, k_range=range(2, 10)):
         else:
             silhouette_scores.append(0)  # Placeholder for k=1
     
-    # Improved method for finding elbow point without kneed
     # Calculate the rate of change (first derivative)
     inertia_derivative = np.diff(inertias)
     # Calculate the second derivative (rate of change of the rate of change)
@@ -216,6 +222,7 @@ def find_optimal_k(scaled_data, k_range=range(2, 10)):
         optimal_k = optimal_k_silhouette
     
     return optimal_k, (list(k_range), inertias, distortions, silhouette_scores)
+
 
 def perform_clustering(df, col1, col2):
     """
@@ -301,6 +308,7 @@ def perform_clustering(df, col1, col2):
         print(f"  Cluster {i+1}: {col1}={center[0]:.2f}, {col2}={center[1]:.2f}")
     
     return labels, scaled_data, original_centers, score, inertia, best_k
+
 
 def plot_clustered_data(labels, scaled_data, centers, score, col1, col2, best_k):
     """
@@ -394,6 +402,7 @@ def plot_clustered_data(labels, scaled_data, centers, score, col1, col2, best_k)
     
     return
 
+
 def perform_fitting(df, col1, col2):
     """
     Perform linear regression fitting between two columns with scaling.
@@ -453,6 +462,7 @@ def perform_fitting(df, col1, col2):
     print(f"R² Score: {r2:.4f}")
     
     return X_original, y_original, y_pred, r2, coef, intercept, scaler_X, scaler_y
+
 
 def plot_fitted_data(X, y, y_pred, r2, col1, col2, scaler_X, scaler_y):
     """
@@ -555,6 +565,7 @@ def plot_fitted_data(X, y, y_pred, r2, col1, col2, scaler_X, scaler_y):
     
     return
 
+
 def main():
     """
     Function to process, analyze data set and plots charts
@@ -585,6 +596,7 @@ def main():
     plot_fitted_data(X, y, y_pred, r2, col1, col2, scaler_X, scaler_y)
     
     return
+
 
 if __name__ == '__main__':
     main()
