@@ -122,7 +122,7 @@ def statistical_analysis(df, col: str):
 def preprocessing(df):
     """
     Clean and prepare the dataset by removing duplicates and missing values,
-    then display summary information about the data. 
+    then display summary information about the data.
     Args:
         df (pandas.DataFrame): Raw input DataFrame.
     Returns:
@@ -169,7 +169,8 @@ def writing(moments, col):
         kurtosis_interpretation = "mesokurtic"
     print(
     f'The distribution is {skew_interpretation} '
-    f'and {kurtosis_interpretation}.')
+    f'and {kurtosis_interpretation}.'
+)
     return
 
 
@@ -177,30 +178,29 @@ def perform_clustering(df, col1, col2):
     """
     Apply KMeans clustering on two selected features, determine the optimal
     number of clusters using silhouette score, and visualize the results.
-    
     Args:
         df (DataFrame): Input data.
         col1 (str): First feature name.
         col2 (str): Second feature name.
-        
     Returns:
         tuple: Cluster assignments, original data, cluster centers coordinates,
                and center labels.
     """
 
-    
+
     def plot_elbow_method():
         """
-        Create an elbow plot to visualize how WCSS (Within-Cluster Sum of Squares)
-        changes with different numbers of clusters, highlighting the optimal choice.
+        Create an elbow plot to visualize how WCSS
+        (Within-Cluster Sum of Squares)
+        changes with different numbers of clusters,
+        highlighting the optimal choice.
         """
         k_values = list(range(2, 11))
-        
         # Setup visualization
         fig, ax = plt.subplots(dpi=144, figsize=(8, 5))
-        
         # Plot WCSS trend with deep blue
-        ax.plot(k_values, inertia_values, marker='o', color='navy', label="WCSS")
+        ax.plot(k_values, inertia_values, marker='o', color='navy',
+                label="WCSS")
 
         # Mark optimal k value with teal
         ax.axvline(x=optimal_k, color='teal', linestyle='--', 
