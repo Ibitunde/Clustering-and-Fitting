@@ -257,7 +257,13 @@ def perform_clustering(df, col1, col2):
     center_x = centers[:, 0]
     center_y = centers[:, 1]
     center_assignments = final_model.predict(final_model.cluster_centers_)
-    return cluster_labels, original_scale_data, center_x, center_y, center_assignments
+    return (
+    cluster_labels,
+    original_scale_data,
+    center_x,
+    center_y,
+    center_assignments
+    )
 
 
 def plot_clustered_data(labels, data, xkmeans, ykmeans, centre_labels):
