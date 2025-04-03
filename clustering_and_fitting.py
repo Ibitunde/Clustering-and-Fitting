@@ -213,7 +213,7 @@ def perform_clustering(df, col1, col2):
         fig.tight_layout()
         plt.show()
         return
-    
+
     def one_silhouette_inertia():
         """
         Compute evaluation metrics for a K-means clustering with n clusters.
@@ -263,7 +263,6 @@ def perform_clustering(df, col1, col2):
 def plot_clustered_data(labels, data, xkmeans, ykmeans, centre_labels):
     """
     Visualize clustering results showing data points and cluster centers.
-    
     Args:
         labels (array): Cluster assignment for each data point.
         data (array): Feature values in original scale.
@@ -281,7 +280,7 @@ def plot_clustered_data(labels, data, xkmeans, ykmeans, centre_labels):
                               cmap=color_map, marker='o', label='Data')
     # Add cluster centers
     ax.scatter(xkmeans, ykmeans, c=centre_labels, cmap=color_map,
-                   marker='x', s=100, label='Centroids', edgecolors='black')
+               marker='x', s=100, label='Centroids', edgecolors='black')
     # Add color legend
     color_bar = fig.colorbar(scatter_plot, ax=ax)
     color_bar.set_ticks(np.unique(labels))
@@ -345,7 +344,7 @@ def plot_fitted_data(data, x, y):
     def linear_model(x_val, slope, intercept):
         """Calculate y-value using linear equation."""
         return slope * x_val + intercept
-    
+
     # Setup visualization
     fig, ax = plt.subplots(dpi=144)
     # Plot original data points
