@@ -23,31 +23,25 @@ from numpy.polynomial import Polynomial as Poly
 
 def plot_relational_plot(df):
     """
-    Create a scatter plot to visualize the relationship between 
+    Create a scatter plot to visualize the relationship between
     petal length and width, colored by iris species.
-    
     Args:
         df (pandas.DataFrame): DataFrame containing iris dataset.
     """
     # Create figure with higher resolution
     fig, ax = plt.subplots(dpi=144)
-    
     # Set a different color palette
     sns.set_palette("viridis")
-    
     # Generate scatter plot with species-based coloring
-    sns.scatterplot(data=df, x='petal_length', y='petal_width', 
+    sns.scatterplot(data=df, x='petal_length', y='petal_width',
                     hue='species', ax=ax)
-    
     # Add legend and format the plot
     ax.legend(title='Species', loc='upper left')
     ax.set_xlabel(df.columns[2])
     ax.set_ylabel(df.columns[3])
     ax.set_title("Relationship between Petal Length and Width")
-    
     # Add grid
     ax.grid(True, linestyle='--', alpha=0.6)
-    
     # Save and display the visualization
     plt.savefig('relational_plot.png')
     plt.show()
@@ -58,7 +52,6 @@ def plot_categorical_plot(df):
     """
     Generate a pie chart showing the proportional distribution
     of iris species in the dataset.
-    
     Args:
         df (pandas.DataFrame): DataFrame containing iris dataset.
     """
@@ -69,8 +62,8 @@ def plot_categorical_plot(df):
     # Create pie chart
     species_distribution.plot(
         ax=ax, kind='pie', autopct='%1.1f%%', startangle=200,
-        colors=['cornflowerblue', 'lightcoral', 'mediumseagreen']  # Updated color scheme
-    )
+        colors=['cornflowerblue', 'lightcoral', 'mediumseagreen']
+        )
     # Format chart appearance
     ax.set_title("Iris Species Distribution")
     ax.set_ylabel('')
@@ -104,18 +97,16 @@ def plot_statistical_plot(df):
     plt.savefig('statistical_plot.png')
     plt.show()
     return
-    
+
 
 def statistical_analysis(df, col: str):
     """
     Calculate fundamental statistical measures for a specified column.
-    
     Args:
         df (pandas.DataFrame): DataFrame containing the dataset.
-        col (str): Name of the column to analyze.
-        
+        col (str): Name of the column to analyze.    
     Returns:
-        tuple: Contains mean, standard deviation, skewness, and excess 
+        tuple: Contains mean, standard deviation, skewness, and excess
         kurtosis.
     """
     # Compute central tendency
@@ -131,11 +122,9 @@ def statistical_analysis(df, col: str):
 def preprocessing(df):
     """
     Clean and prepare the dataset by removing duplicates and missing values,
-    then display summary information about the data.
-    
+    then display summary information about the data. 
     Args:
         df (pandas.DataFrame): Raw input DataFrame.
-        
     Returns:
         pandas.DataFrame: Cleaned DataFrame.
     """
@@ -152,10 +141,11 @@ def preprocessing(df):
 
 def writing(moments, col):
     """
-    Provides written interpretation of statistical measures for a given attribute.
-    
+    Provides written interpretation of statistical measures
+    for a given attribute.
     Args:
-        moments (list): Contains [mean, standard deviation, skewness, excess kurtosis].
+        moments (list): Contains [mean, standard deviation,
+                                  skewness, excess kurtosis].
         col (str): Name of the attribute being analyzed.
     """
     print(f'Analysis of {col}:')
