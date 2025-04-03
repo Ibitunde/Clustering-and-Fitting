@@ -104,8 +104,8 @@ def statistical_analysis(df, col: str):
     Calculate fundamental statistical measures for a specified column.
     Args:
         df (pandas.DataFrame): DataFrame containing the dataset.
-        col (str): Name of the column to analyze.    
-    Returns:
+        col (str): Name of the column to analyze.
+        Returns:
         tuple: Contains mean, standard deviation, skewness, and excess
         kurtosis.
     """
@@ -159,7 +159,7 @@ def writing(moments, col):
     elif moments[2] > 2:
         skew_interpretation = "right-skewed"
     else:
-        skew_interpretation = "not skewed" 
+        skew_interpretation = "not skewed"
     # Interpret kurtosis
     if moments[3] < -1:
         kurtosis_interpretation = "platykurtic"
@@ -167,7 +167,9 @@ def writing(moments, col):
         kurtosis_interpretation = "leptokurtic"
     else:
         kurtosis_interpretation = "mesokurtic"
-    print(f'The distribution is {skew_interpretation}and {kurtosis_interpretation}.')
+    print(
+    f'The distribution is {skew_interpretation} '
+    f'and {kurtosis_interpretation}.')
     return
 
 
