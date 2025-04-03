@@ -289,22 +289,18 @@ def plot_clustered_data(labels, data, xkmeans, ykmeans, centre_labels):
     
     # Plot data points with cluster-based coloring
     scatter_plot = ax.scatter(data[:, 0], data[:, 1], c=labels, 
-                             cmap=color_map, marker='o', label='Data')
-    
+                    cmap=color_map, marker='o', label='Data')
     # Add cluster centers
-    ax.scatter(xkmeans, ykmeans, c=centre_labels, cmap=color_map, 
-              marker='x', s=100, label='Centroids', edgecolors='black')
-    
+    ax.scatter(xkmeans, ykmeans, c=centre_labels, cmap=color_map,
+       marker='x', s=100, label='Centroids', edgecolors='black')
     # Add color legend
     color_bar = fig.colorbar(scatter_plot, ax=ax)
     color_bar.set_ticks(np.unique(labels))
-    
     # Format plot
     ax.legend()
     ax.set_xlabel('Petal Length')
     ax.set_ylabel('Sepal Width')
-    ax.grid(True, linestyle='--', alpha=0.6)  # Added grid
-    
+    ax.grid(True, linestyle='--', alpha=0.6)
     # Save and display visualization
     plt.savefig('clustering.png')
     plt.show()
@@ -326,7 +322,7 @@ def perform_fitting(df, col1, col2):
     feature = df[col1].values
     target = df[col2].values
     # Fit linear model
-    poly_model = Poly.fit(feature, target, 1)  # Linear fit (degree 1)
+    poly_model = Poly.fit(feature, target, 1)
     covariance = np.polyfit(feature, target, 1, cov=True)[1]
     error_estimates = np.sqrt(np.diag(covariance))
     # Extract coefficients
