@@ -311,7 +311,6 @@ def plot_clustered_data(labels, data, xkmeans, ykmeans, centre_labels):
     return
 
 
-
 def perform_fitting(df, col1, col2):
     """
     Perform linear regression between two columns using numpy polynomial tools.
@@ -362,10 +361,9 @@ def plot_fitted_data(data, x, y):
         """Calculate y-value using linear equation."""
         return slope * x_val + intercept
 
-    
-    # Setup visualization
+
+    #Setup visualization
     fig, ax = plt.subplots(dpi=144)
-    
     # Plot original data points
     ax.plot(x, y, 'teal', marker='o', linestyle='',
             label='Original Data')
