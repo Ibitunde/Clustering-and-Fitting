@@ -425,10 +425,12 @@ def main():
     plot_clustered_data(*cluster_analysis)
     
     # Perform regression analysis
-    regression_analysis = perform_fitting(processed_data, 'petal_length', 'petal_width')
+    regression_analysis = perform_fitting(processed_data,
+                                          'petal_length', 'petal_width')
     plot_fitted_data(*regression_analysis)
     return
 
 
 if __name__ == '__main__':
     main()
+    
