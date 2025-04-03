@@ -258,11 +258,11 @@ def perform_clustering(df, col1, col2):
     center_y = centers[:, 1]
     center_assignments = final_model.predict(final_model.cluster_centers_)
     return (
-    cluster_labels,
-    original_scale_data,
-    center_x,
-    center_y,
-    center_assignments
+        cluster_labels,
+        original_scale_data,
+        center_x,
+        center_y,
+        center_assignments
     )
 
 
