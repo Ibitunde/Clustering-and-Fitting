@@ -167,10 +167,8 @@ def writing(moments, col):
         kurtosis_interpretation = "leptokurtic"
     else:
         kurtosis_interpretation = "mesokurtic"
-    print(
-    f'The distribution is {skew_interpretation} '
-    f'and {kurtosis_interpretation}.'
-)
+    print(f'The distribution is {skew_interpretation} '
+          f'and {kurtosis_interpretation}.')
     return
 
 
@@ -201,27 +199,23 @@ def perform_clustering(df, col1, col2):
                 label="WCSS")
 
         # Mark optimal k value with teal
-        ax.axvline(x=optimal_k, color='teal', linestyle='--', 
-                  label=f'Optimal k = {optimal_k}')
-        
+        ax.axvline(x=optimal_k, color='teal', linestyle='--',
+                   label=f'Optimal k = {optimal_k}')
         # Format plot
         ax.set_title('Elbow Method for Optimal Clusters')
         ax.set_xlabel('Number of Clusters')
         ax.set_ylabel('WCSS (Inertia)')
         ax.legend()
-        ax.grid(True, linestyle='--', alpha=0.6)  # Added dashed grid for clarity
-        
+        ax.grid(True, linestyle='--',
+                alpha=0.6)
         # Save and display the plot
         plt.savefig('elbow_plot.png')
         fig.tight_layout()
         plt.show()
         return
-
-
     def one_silhouette_inertia():
         """
         Compute evaluation metrics for a K-means clustering with n clusters.
-        
         Returns:
             tuple: Silhouette score and inertia value for current clustering.
         """
@@ -230,8 +224,6 @@ def perform_clustering(df, col1, col2):
         sil_score = silhouette_score(normalized_data, kmeans_model.labels_)
         inertia_val = kmeans_model.inertia_
         return sil_score, inertia_val
-
-
     # Extract and normalize features
     feature_subset = df[[col1, col2]].copy()
     scaler = StandardScaler()
@@ -241,18 +233,19 @@ def perform_clustering(df, col1, col2):
     # Evaluate different cluster counts
     inertia_values = []
     optimal_k, best_score = None, -np.inf
-    
+
     for n in range(2, 11):
         current_score, current_inertia = one_silhouette_inertia()
         inertia_values.append(current_inertia)
         print(f"{n} clusters silhouette score = {current_score:.2f}")
-        
+
         if current_score > best_score:
             optimal_k = n
             best_score = current_score
 
     # Report best clustering configuration
-    print(f"\nOptimal number of clusters = {optimal_k} with silhouette score = {best_score:.2f}")
+    print(f"\nOptimal number of clusters = {optimal_k}"
+          f"with silhouette score = {best_score:.2f}")
     plot_elbow_method()
 
     # Perform final clustering with optimal parameters
@@ -264,9 +257,7 @@ def perform_clustering(df, col1, col2):
     center_x = centers[:, 0]
     center_y = centers[:, 1]
     center_assignments = final_model.predict(final_model.cluster_centers_)
-    
     return cluster_labels, original_scale_data, center_x, center_y, center_assignments
-
 
 
 def plot_clustered_data(labels, data, xkmeans, ykmeans, centre_labels):
@@ -282,11 +273,9 @@ def plot_clustered_data(labels, data, xkmeans, ykmeans, centre_labels):
     """
     # Setup visualization
     fig, ax = plt.subplots(dpi=144)
-    
     # Create color palette based on number of clusters (using viridis)
     palette = plt.cm.viridis(np.linspace(0, 1, len(np.unique(labels))))
     color_map = ListedColormap(palette)
-    
     # Plot data points with cluster-based coloring
     scatter_plot = ax.scatter(data[:, 0], data[:, 1], c=labels, 
                     cmap=color_map, marker='o', label='Data')
@@ -356,8 +345,6 @@ def plot_fitted_data(data, x, y):
     def linear_model(x_val, slope, intercept):
         """Calculate y-value using linear equation."""
         return slope * x_val + intercept
-
-
     #Setup visualization
     fig, ax = plt.subplots(dpi=144)
     # Plot original data points
