@@ -186,8 +186,6 @@ def perform_clustering(df, col1, col2):
         tuple: Cluster assignments, original data, cluster centers coordinates,
                and center labels.
     """
-
-
     def plot_elbow_method():
         """
         Create an elbow plot to visualize how WCSS
