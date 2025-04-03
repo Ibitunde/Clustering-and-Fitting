@@ -367,32 +367,31 @@ def plot_fitted_data(data, x, y):
     fig, ax = plt.subplots(dpi=144)
     
     # Plot original data points
-    ax.plot(x, y, 'teal', marker='o', linestyle='', label='Original Data')  # Changed to teal
-    
+    ax.plot(x, y, 'teal', marker='o', linestyle='',
+            label='Original Data')
     # Extract model parameters
     x_fit_range = data['xfit']
     y_fit_values = data['yfit']
     slope, intercept = data['params']
     slope_error, intercept_error = data['sigma']
-    
     # Plot fitted line
-    ax.plot(x_fit_range, y_fit_values, 'darkorange', linestyle='-', label='Regression Line')  # Changed to dark orange
-    
+    ax.plot(x_fit_range, y_fit_values, 'darkorange', linestyle='-',
+            label='Regression Line')
     # Add uncertainty band
     ax.fill_between(
         x_fit_range,
-        linear_model(x_fit_range, slope - slope_error, intercept - intercept_error),
-        linear_model(x_fit_range, slope + slope_error, intercept + intercept_error),
+        linear_model(x_fit_range, slope - slope_error,
+                     intercept - intercept_error),
+        linear_model(x_fit_range, slope + slope_error,
+                     intercept + intercept_error),
         color='gold',  # Changed to gold
         alpha=0.2,
         label='Confidence Band'
     )
-    
     # Format plot
     ax.set_xlabel('Petal Length')
     ax.set_ylabel('Petal Width')
     ax.legend()
-    
     # Save and display visualization
     plt.savefig('fitting.png')
     plt.show()
@@ -407,23 +406,19 @@ def main():
     # Load and preprocess data
     iris_data = pd.read_csv('data.csv')
     processed_data = preprocessing(iris_data)
-    
     # Column selection for analysis
     target_column = 'petal_length'
-    
     # Generate visualizations
     plot_relational_plot(processed_data)
     plot_statistical_plot(processed_data)
     plot_categorical_plot(processed_data)
-    
     # Statistical analysis
     statistical_measures = statistical_analysis(processed_data, target_column)
     writing(statistical_measures, target_column)
-    
     # Perform clustering analysis
-    cluster_analysis = perform_clustering(processed_data, 'petal_length', 'sepal_width')
+    cluster_analysis = perform_clustering(processed_data,
+                                          'petal_length', 'sepal_width')
     plot_clustered_data(*cluster_analysis)
-    
     # Perform regression analysis
     regression_analysis = perform_fitting(processed_data,
                                           'petal_length', 'petal_width')
@@ -433,4 +428,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
