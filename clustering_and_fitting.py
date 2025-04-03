@@ -213,6 +213,7 @@ def perform_clustering(df, col1, col2):
         fig.tight_layout()
         plt.show()
         return
+    
     def one_silhouette_inertia():
         """
         Compute evaluation metrics for a K-means clustering with n clusters.
@@ -251,7 +252,6 @@ def perform_clustering(df, col1, col2):
     # Perform final clustering with optimal parameters
     final_model = KMeans(n_clusters=optimal_k, n_init=20, random_state=42)
     final_model.fit(normalized_data)
-    
     cluster_labels = final_model.labels_
     centers = scaler.inverse_transform(final_model.cluster_centers_)
     center_x = centers[:, 0]
@@ -278,10 +278,10 @@ def plot_clustered_data(labels, data, xkmeans, ykmeans, centre_labels):
     color_map = ListedColormap(palette)
     # Plot data points with cluster-based coloring
     scatter_plot = ax.scatter(data[:, 0], data[:, 1], c=labels, 
-                    cmap=color_map, marker='o', label='Data')
+                              cmap=color_map, marker='o', label='Data')
     # Add cluster centers
     ax.scatter(xkmeans, ykmeans, c=centre_labels, cmap=color_map,
-       marker='x', s=100, label='Centroids', edgecolors='black')
+                               marker='x', s=100, label='Centroids', edgecolors='black')
     # Add color legend
     color_bar = fig.colorbar(scatter_plot, ax=ax)
     color_bar.set_ticks(np.unique(labels))
